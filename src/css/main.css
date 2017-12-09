@@ -89,3 +89,7 @@ svg.nvd3-svg {
         fill-opacity: 1;
     }
 }
+
+.nvd3 .nv-range .nv-point.hover {
+    fill-opacity: 1;
+}
