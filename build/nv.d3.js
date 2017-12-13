@@ -4213,7 +4213,8 @@ nv.models.discreteBar = function() {
         valueFormat:    {get: function(){return valueFormat;}, set: function(_){valueFormat=_;}},
         id:          {get: function(){return id;}, set: function(_){id=_;}},
         rectClass: {get: function(){return rectClass;}, set: function(_){rectClass=_;}},
-
+        groupSpacing:{get: function(){return groupSpacing;}, set: function(_){groupSpacing=_;}},
+ 
         // options that require extra logic in the setter
         margin: {get: function(){return margin;}, set: function(_){
             margin.top    = _.top    !== undefined ? _.top    : margin.top;
