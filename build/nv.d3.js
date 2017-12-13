@@ -4088,7 +4088,7 @@ nv.models.discreteBar = function() {
 
             var barsEnter = bars.enter().append('g')
                 .attr('transform', function(d,i,j) {
-                    return 'translate(' + (x(getX(d,i)) + x.rangeBand() * .05 ) + ', ' + y(0) + ')'
+                    return 'translate(' + (x(getX(d,i)) + x.rangeBand() * groupSpacing/2.0 ) + ', ' + y(0) + ')'
                 })
                 .on('mouseover', function(d,i) { //TODO: figure out why j works above, but not here
                     d3.select(this).classed('hover', true);
@@ -4135,7 +4135,7 @@ nv.models.discreteBar = function() {
 
             barsEnter.append('rect')
                 .attr('height', 0)
-                .attr('width', x.rangeBand() * .9 / data.length )
+                .attr('width', x.rangeBand() * (1.0-groupSpacing) / data.length )
 
             if (showValues) {
                 barsEnter.append('text')
@@ -4145,7 +4145,7 @@ nv.models.discreteBar = function() {
                 bars.select('text')
                     .text(function(d,i) { return valueFormat(getY(d,i)) })
                     .watchTransition(renderWatch, 'discreteBar: bars text')
-                    .attr('x', x.rangeBand() * .9 / 2)
+                    .attr('x', x.rangeBand() * (1.0-groupSpacing) / 2)
                     .attr('y', function(d,i) { return getY(d,i) < 0 ? y(getY(d,i)) - y(0) + 12 : -4 })
 
                 ;
@@ -4160,11 +4160,11 @@ nv.models.discreteBar = function() {
                 .select('rect')
                 .attr('class', rectClass)
                 .watchTransition(renderWatch, 'discreteBar: bars rect')
-                .attr('width', x.rangeBand() * .9 / data.length);
+                .attr('width', x.rangeBand() * (1.0-groupSpacing) / data.length);
             bars.watchTransition(renderWatch, 'discreteBar: bars')
                 //.delay(function(d,i) { return i * 1200 / data[0].values.length })
                 .attr('transform', function(d,i) {
-                    var left = x(getX(d,i)) + x.rangeBand() * .05,
+                    var left = x(getX(d,i)) + x.rangeBand() * groupSpacing/2.0,
                         top = getY(d,i) < 0 ?
                             y(0) :
                                 y(0) - y(getY(d,i)) < 1 ?
